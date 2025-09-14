@@ -12,10 +12,16 @@
     <div class="container">
         <h2>To Do List</h2>
         <button id="add-task-btn">Add Task</button>
+        <button id="cancel" style="display: none;">Cancel</button>
+        <div id="task-forms" style="display: none;">
+            <form id="todo-form">
+                <input type="text" id="task-input" placeholder="Enter a new task" required/>
+                <label for="due-date">Due Date:</label>
+                <input type="datetime-local" id="due-date" required/>
+                <button type="submit" id="submit">Add Task</button>
+            </form>
+        </div>
         <ul id="task-list" style="display: none;">
-            <li>task1</li>
-            <li>task2</li>
-            <li>task3</li>
             <!-- Tasks will be added here dynamically -->
         </ul>
     </div>
