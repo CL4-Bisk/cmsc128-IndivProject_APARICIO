@@ -12,7 +12,6 @@ addButton.addEventListener('click', e => {
     e.preventDefault();
     taskForms.style.display = 'block';
     cancelButton.style.display = 'inline';
-    taskList.style.display = 'block';
 });
 
 submitButton.addEventListener('click', async e => {
@@ -33,7 +32,6 @@ submitButton.addEventListener('click', async e => {
 cancelButton.addEventListener('click', e => {
     e.preventDefault();
     taskForms.style.display = 'none';
-    taskList.style.display = 'none';
     cancelButton.style.display = 'none';
     forms.reset();
 });
@@ -50,6 +48,13 @@ function addTaskInterface(task, dueDate, id, createdAt) {
     numberOfTasks = taskList.getElementsByTagName('li').length + 1;
 
     const li = document.createElement('li');
+    
+    // Checkbox
+    const completeButton = document.createElement('input');
+    completeButton.type = 'checkbox';
+    completeButton.style.marginLeft = '10px';
+    taskList.appendChild(completeButton);
+
     li.textContent = `Task no.${numberOfTasks}: ${task} - Due: ${new Date(dueDate).toLocaleString()}`;
     taskList.appendChild(li);
 
@@ -58,15 +63,9 @@ function addTaskInterface(task, dueDate, id, createdAt) {
     timeLabel.textContent = 'Added at: ' + (createdAt || new Date().toLocaleString());
     li.appendChild(timeLabel);
 
-    // Checkbox
-    const completeButton = document.createElement('input');
-    completeButton.type = 'checkbox';
-    completeButton.style.marginLeft = '10px';
-    li.appendChild(completeButton);
-
-    const label = document.createElement('label');
-    label.textContent = 'Mark as done';
-    li.appendChild(label);
+    // const label = document.createElement('label');
+    // label.textContent = 'Mark as done';
+    // li.appendChild(label);
 
     // Edit button
     const editButton = document.createElement('button');
@@ -151,6 +150,7 @@ function addTaskInterface(task, dueDate, id, createdAt) {
         yesButton.addEventListener('click', async () => {
             await deleteTaskFromDB(id); // remove from Firestore
             taskList.removeChild(li);
+            taskList.removeChild(completeButton);
         });
 
         noButton.addEventListener('click', () => {
