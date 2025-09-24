@@ -3,7 +3,7 @@
     <title>Lab1</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <script src="script.js" defer></script>
+    <script type="module" src="script.js"></script>
     <script type="module" src="firebase.js"></script>
 </head>
 <body>
@@ -19,10 +19,10 @@
                 <input type="text" id="task-input" placeholder="Enter a new task" required/>
                 <label for="due-date">Due Date:</label>
                 <input type="datetime-local" id="due-date" required/>
-                <button type="submit" id="submit">Add Task</button>
+                <button type="submit" id="submit">Confirm</button>
             </form>
         </div>
-        <ul id="task-list" style="display: none;">
+        <ul id="task-list">
             <!-- Tasks will be added here dynamically -->
         </ul>
     </div>
